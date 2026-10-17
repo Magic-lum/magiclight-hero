@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MagicLight — Storm Lab / Hero interactivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/interactive-hero.css">
+<style>
+:root{--red:#f30;--red-dark:#df2d00;--white:#fff;--ink:#0d0d0d;--text:#191919;--gray:#777;--fog:#f2f2f0;--stroke:rgba(255,255,255,.28);--inset:40px;font-family:Manrope,Arial,sans-serif;color:#191919}
+*{box-sizing:border-box}body{margin:0;background:#eee;font-size:14px}
+header{background:var(--red);color:white;min-height:360px;padding:var(--inset);position:relative;overflow:hidden}
+header:after{content:"";position:absolute;inset:auto -5% -110% 43%;aspect-ratio:1;border:1px solid #ffffff55;border-radius:50%;box-shadow:0 0 0 55px #ffffff14,0 0 0 110px #ffffff14,0 0 0 165px #ffffff14}
+header small,.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+h1{font-size:clamp(50px,10vw,120px);line-height:.82;letter-spacing:-.075em;text-transform:uppercase;margin:65px 0 20px;max-width:850px}
+header p{max-width:470px;line-height:1.5}.nav{position:absolute;right:var(--inset);top:var(--inset);z-index:2;display:flex;gap:4px;padding:1px;border:3px solid var(--stroke);background:#ffffff33;backdrop-filter:blur(16px)}.nav button{background:white;color:#777;border:0;padding:0 12px;height:32px;font:600 12px Manrope;cursor:pointer}.nav button.active{background:#0d0d0d;color:white}.nav button:hover{background:#f4f4f4;color:#111}.wrap{max-width:1250px;margin:auto;padding:42px 32px 90px}.section{margin:0 0 50px}.section h2{font-size:16px;letter-spacing:-.03em;margin:0 0 16px}.section>p{color:#666;max-width:750px;line-height:1.55;margin:0 0 20px}.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}.swatch{background:white;border:1px solid #ddd;padding:8px}.chip{height:72px;margin-bottom:10px}.swatch b,.swatch code{display:block;font-size:11px}.swatch code{color:#777;margin-top:4px}.types{background:white;padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:22px}.display{font-size:clamp(40px,7vw,82px);font-weight:800;letter-spacing:-.075em;line-height:.82;text-transform:uppercase}.sample{border-top:1px solid #ddd;padding-top:12px}.sample label{font-size:10px;color:#777;text-transform:uppercase;letter-spacing:.1em}.sample p{margin:8px 0;line-height:1.45}.row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:#252525;padding:24px}.cta{height:44px;padding:0 18px;border:1px solid white;background:white;color:#f30;font:700 13px Manrope;cursor:pointer}.cta:hover{color:#111}.cta:focus-visible{outline:2px solid white;outline-offset:5px}.checkout{height:56px;padding:0 20px;border:0;background:#f30;color:white;font:700 15px Manrope;cursor:pointer}.checkout:hover{background:#df2d00}.glass{width:min(312px,100%);padding:24px;color:white;background:#ffffff14;border:1px solid #ffffff3d;backdrop-filter:blur(16px)}.glass strong{font-size:14px;text-transform:uppercase}.glass p{font-size:12px;line-height:1.5;color:#ffffffc9}.frame{width:180px;padding:9px;border:1px solid #ffffff59;background:#333;aspect-ratio:1.12;position:relative}.frame div{height:100%;background:linear-gradient(145deg,#f30,#101010 52%,#8c8c8c)}.frame:after{content:"";position:absolute;width:14px;height:14px;right:7px;top:7px;background:white}.components{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}.demo{background:#292929;min-height:190px;padding:22px;display:flex;align-items:center;justify-content:center}.light{background:white}.field{border:1px solid transparent;background:#f2f2f0;padding:14px;width:100%;font:14px Manrope}.field:focus{outline:1px solid #f30}.readout{border:2px solid white;border-radius:999px;color:white;padding:12px 18px}.cartdemo{background:#f30;color:white;padding:20px;width:100%}.cartdemo hr{border:0;border-top:1px solid #ffffff47}.meta{font-size:11px;color:#777;margin-top:8px}.smallnav{display:flex;gap:4px;padding:1px;border:3px solid #ffffff47;background:#ffffff33}.smallnav span{background:white;color:#777;padding:8px 10px;font-size:11px}.smallnav span:first-child{background:#0d0d0d;color:white}@media(max-width:620px){:root{--inset:20px}header{min-height:350px;padding-top:72px}.nav{right:20px;top:18px;border-width:2px}.nav button{height:40px}.wrap{padding:32px 18px 60px}.types{grid-template-columns:1fr}.display{font-size:48px}}
+</style>
+</head>
+<body>
+<header id="magiclight-hero" class="hero" role="banner" aria-label="MagicLight hero" data-copy-set="cycle" data-force-reduce="false">
+  <div class="hero__bg" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 631.8 112" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+      <title>MagicLight background</title>
+      <path d="M0,35.84 L134.4,0 L109.76,112 L0,112 Z M159.84 112V56H169.33L187.84 93.18L206.36 56H215.84V112H205.97V78.56L189.71 112H185.98L169.72 78.56V112Z M222.07 112 239.18 56H254.97L272.08 112H261.19L257.57 100.33H236.49L232.96 112ZM254.54 90.46 246.96 65.92 239.49 90.46Z M300.08 113.17Q294.79 113.17 290.01 111.28Q285.22 109.39 281.55 105.7Q277.87 102.01 275.75 96.56Q273.63 91.12 273.63 84Q273.63 74.71 277.19 68.19Q280.75 61.68 286.76 58.26Q292.77 54.83 300.08 54.83Q310.89 54.83 317.07 59.85Q323.26 64.87 325.36 74.04L314.54 75.6Q313.03 70.7 309.59 67.76Q306.14 64.83 300.78 64.79Q295.45 64.71 291.91 67.08Q288.37 69.46 286.6 73.81Q284.83 78.17 284.83 84Q284.83 89.83 286.6 94.11Q288.37 98.39 291.91 100.76Q295.45 103.13 300.78 103.21Q304.39 103.29 307.33 101.97Q310.27 100.64 312.29 97.81Q314.31 94.97 315.17 90.53H306.3V82.37H326.44Q326.52 82.87 326.56 84.16Q326.6 85.44 326.6 85.63Q326.6 93.68 323.33 99.91Q320.07 106.13 314.12 109.65Q308.17 113.17 300.08 113.17Z M334.38 112V56H344.96V112Z M379.88 113.17Q371.48 113.17 365.39 109.51Q359.31 105.86 356.02 99.28Q352.73 92.71 352.73 84Q352.73 75.29 356.02 68.72Q359.31 62.14 365.39 58.49Q371.48 54.83 379.88 54.83Q389.52 54.83 396.07 59.62Q402.63 64.4 405.31 72.57L394.66 75.52Q393.1 70.43 389.41 67.61Q385.71 64.79 379.88 64.79Q374.55 64.79 370.99 67.16Q367.43 69.53 365.64 73.85Q363.86 78.17 363.86 84Q363.86 89.83 365.64 94.15Q367.43 98.47 370.99 100.84Q374.55 103.21 379.88 103.21Q385.71 103.21 389.41 100.37Q393.1 97.53 394.66 92.48L405.31 95.43Q402.63 103.6 396.07 108.38Q389.52 113.17 379.88 113.17Z M413.87 112V56H424.44V102.12H448.56V112Z M455.17 112V56H465.74V112Z M499.97 113.17Q494.68 113.17 489.89 111.28Q485.11 109.39 481.44 105.7Q477.76 102.01 475.64 96.56Q473.52 91.12 473.52 84Q473.52 74.71 477.08 68.19Q480.64 61.68 486.65 58.26Q492.66 54.83 499.97 54.83Q510.78 54.83 516.96 59.85Q523.14 64.87 525.24 74.04L514.43 75.6Q512.92 70.7 509.47 67.76Q506.03 64.83 500.67 64.79Q495.34 64.71 491.8 67.08Q488.26 69.46 486.49 73.81Q484.72 78.17 484.72 84Q484.72 89.83 486.49 94.11Q488.26 98.39 491.8 100.76Q495.34 103.13 500.67 103.21Q504.28 103.29 507.22 101.97Q510.16 100.64 512.18 97.81Q514.2 94.97 515.06 90.53H506.19V82.37H526.33Q526.41 82.87 526.45 84.16Q526.49 85.44 526.49 85.63Q526.49 93.68 523.22 99.91Q519.96 106.13 514.01 109.65Q508.06 113.17 499.97 113.17Z M533.49 112V56H544.07V79.02H569.11V56H579.69V112H569.11V88.9H544.07V112Z M602.79 112V65.88H585.13V56H631.02V65.88H613.37 112Z" fill="#FF3300" fill-rule="evenodd" clip-rule="evenodd"/>
+    </svg>
+  </div>
+
+  <nav class="nav" aria-label="Primary">
+    <button class="active">LAB</button>
+    <button>COLLECTION</button>
+    <button>ABOUT</button>
+  </nav>
+
+  <div class="hero__wrap">
+    <div class="hero__copy">
+      <div class="hero__timeline" aria-live="polite" aria-atomic="true" tabindex="-1">
+        <p class="hero__timeline-line" data-copy-line></p>
+      </div>
+
+      <h1 class="hero__title">Engineered<br>for the storm.</h1>
+      <p class="hero__lead">Un sistema visual de campaña: rojo intenso, tipografía editorial de escala extrema, superficies de vidrio y controles de compra directos.</p>
+
+      <div class="hero__actions">
+        <button class="cta" aria-label="Shop the collection">Shop the collection</button>
+      </div>
+    </div>
+
+    <div class="hero__visual" aria-hidden="false">
+      <div class="hero__logo" data-logo aria-hidden="false">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" role="img" aria-label="MagicLight" focusable="false">
+          <title>MagicLight</title>
+          <path d="M0,64 L240,0 L196,200 L0,200 Z M19.69 137.64V99.64H26.13L38.69 124.87L51.26 99.64H57.69V137.64H50.99V114.95L39.96 137.64H37.43L26.4 114.95V137.64Z M61.81 137.64 73.42 99.64H84.14L95.75 137.64H88.36L85.9 129.72H71.6L69.2 137.64ZM83.85 123.02 78.7 106.37 73.63 123.02Z M114.64 138.43Q111.05 138.43 107.81 137.15Q104.56 135.87 102.07 133.37Q99.57 130.86 98.14 127.16Q96.7 123.47 96.7 118.64Q96.7 112.33 99.11 107.91Q101.53 103.49 105.6 101.17Q109.68 98.85 114.64 98.85Q121.98 98.85 126.17 102.25Q130.37 105.66 131.79 111.88L124.46 112.94Q123.43 109.61 121.09 107.62Q118.76 105.63 115.12 105.6Q111.5 105.55 109.1 107.16Q106.7 108.77 105.5 111.73Q104.3 114.68 104.3 118.64Q104.3 122.6 105.5 125.5Q106.7 128.4 109.1 130.01Q111.5 131.62 115.12 131.68Q117.57 131.73 119.56 130.83Q121.56 129.93 122.93 128.01Q124.3 126.08 124.88 123.07H118.86V117.53H132.53Q132.59 117.87 132.61 118.75Q132.64 119.62 132.64 119.75Q132.64 125.21 130.42 129.43Q128.21 133.66 124.17 136.04Q120.13 138.43 114.64 138.43Z M137.81 137.64V99.64H144.99V137.64Z M168.58 138.43Q162.88 138.43 158.75 135.95Q154.62 133.47 152.39 129.01Q150.16 124.55 150.16 118.64Q150.16 112.73 152.39 108.27Q154.62 103.81 158.75 101.33Q162.88 98.85 168.58 98.85Q175.12 98.85 179.57 102.09Q184.02 105.34 185.84 110.88L178.61 112.89Q177.55 109.43 175.05 107.52Q172.54 105.6 168.58 105.6Q164.97 105.6 162.55 107.21Q160.14 108.82 158.92 111.75Q157.71 114.68 157.71 118.64Q157.71 122.6 158.92 125.53Q160.14 128.46 162.55 130.07Q164.97 131.68 168.58 131.68Q172.54 131.68 175.05 129.75Q177.55 127.82 178.61 124.39L185.84 126.4Q184.02 131.94 179.57 135.19Q175.12 138.43 168.58 138.43Z M20.22 184V146H27.4V177.3H43.76V184Z M48.14 184V146H55.32V184Z M78.44 184.79Q74.85 184.79 71.6 183.51Q68.36 182.23 65.86 179.73Q63.37 177.22 61.93 173.52Q60.49 169.83 60.49 165Q60.49 158.69 62.91 154.27Q65.32 149.85 69.4 147.53Q73.47 145.21 78.44 145.21Q85.77 145.21 89.97 148.61Q94.16 152.02 95.59 158.24L88.25 159.3Q87.22 155.97 84.89 153.98Q82.55 151.99 78.91 151.96Q75.3 151.91 72.89 153.52Q70.49 155.13 69.29 158.09Q68.09 161.04 68.09 165Q68.09 168.96 69.29 171.86Q70.49 174.76 72.89 176.37Q75.3 177.98 78.91 178.04Q81.37 178.09 83.36 177.19Q85.35 176.29 86.72 174.37Q88.09 172.44 88.67 169.43H82.66V163.89H96.33Q96.38 164.23 96.41 165.11Q96.43 165.98 96.43 166.11Q96.43 171.57 94.22 175.79Q92 180.02 87.96 182.4Q83.92 184.79 78.44 184.79Z M101.08 184V146H108.26V161.62H125.25V146H132.43V184H125.25V168.32H108.26V184Z M148 184V152.7H136.02V146H167.16V152.7H155.17V184Z" fill="#FF3300" fill-rule="evenodd" clip-rule="evenodd"/>
+        </svg>
+      </div>
+
+      <div class="hero__symbol" data-symbol aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" role="img" aria-label="MagicLight symbol" focusable="false">
+          <title>MagicLight symbol</title>
+          <path d="M0,64 L240,0 L196,200 L0,200 Z" fill="#FF3300"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="section"><h2>01 · Paleta cromática</h2><p>El cian del titular de la plantilla es un efecto de mezcla con la fotografía; el sistema base usa rojo, blanco y neutros.</p><div class="swatches">
+<div class="swatch"><div class="chip" style="background:#f30"></div><b>Rojo principal</b><code>#ff3300</code></div><div class="swatch"><div class="chip" style="background:#0d0d0d"></div><b>Negro activo</b><code>#0d0d0d</code></div><div class="swatch"><div class="chip" style="background:#191919"></div><b>Tinta checkout</b><code>#191919</code></div><div class="swatch"><div class="chip" style="background:#777"></div><b>Gris navegación</b><code>#777777</code></div><div class="swatch"><div class="chip" style="background:#d5d5d2"></div><b>Borde neutro</b><code>#d5d5d2</code></div><div class="swatch"><div class="chip" style="background:#f2f2f0"></div><b>Campo claro</b><code>#f2f2f0</code></div><div class="swatch"><div class="chip" style="background:#fff;border:1px solid #ddd"></div><b>Blanco</b><code>#ffffff</code></div></div></section>
+
+  <section class="section"><h2>02 · Tipografía</h2><div class="types"><div><label class="eyebrow">Titular de campaña · 700 · tracking -0.07em</label><div class="display">Feel the<br>elements.</div></div><div class="sample"><label>Manrope Variable · pesos 200–800</label><p style="font-weight:300;font-size:16px">Texto de lectura ligero para explicar el producto y dejar que la imagen lidere la experiencia.</p><p style="font-weight:700;text-transform:uppercase">PRECISIÓN PARA CADA EXPEDICIÓN</p><p style="font-weight:200;font-size:40px;letter-spacing:-.09em;margin-bottom:0">$189.990</p><label>Precio · peso 200 · tracking -0.09em</label></div></div></section>
+
+  <section class="section"><h2>03 · Botones y navegación</h2><p>Controles cuadrados, estados claros y áreas táctiles más amplias en móvil.</p><div class="row"><button class="cta">SHOP THE COLLECTION</button><button class="checkout">ADD TO CART — $189.990</button><div class="smallnav"><span>ACTIVE</span><span>DEFAULT</span></div></div><div class="meta">CTA producto: altura mínima 44 px · padding 12 × 18 px · checkout: altura mínima 56 px · navegación: borde 3 px (2 px móvil).</div></section>
+
+  <section class="section"><h2>04 · Panels, cards y controles</h2><div class="components"><div class="demo"><div class="glass"><strong>Rain system</strong><p>Track the conditions. Choose your layer. Built for movement.</p><button class="cta" style="height:36px">PAUSE ⏸</button></div></div><div class="demo"><div class="frame"><div></div></div></div><div class="demo light"><input class="field" value="Nombre y apellido" aria-label="Nombre y apellido"></div><div class="demo"><div class="readout">STORM · 02:48</div></div><div class="demo"><div class="cartdemo"><strong>YOUR CART</strong><hr><span>Storm shell · 1</span><hr><strong>Subtotal&nbsp;&nbsp; $189.990</strong></div></div></div><div class="meta">Panel de vidrio: 1 px de borde · blur 16 px · padding 24 px. Marco de imagen: 1 px · padding 9 px · ratio aproximado 1.12. Campos cuadrados; foco rojo de 1 px. Solo el readout es circular.</div></section>
+
+  <section class="section"><h2>05 · Ritmo y responsive</h2><p>Gutter general 40 px en escritorio, 24/20 px en móvil. La escena principal ocupa al menos el alto de pantalla (mínimo 740 px). La galería hace loop vertical de 27 s, con pausa e integración de movimiento reducido. Los cambios responsivos consideran ancho, altura, orientación y contenedor de Framer.</p><div class="meta">Los valores de esta lámina resumen NFStyles.tsx; cada página puede añadir sus propias composiciones y variantes.</div></section>
+</main>
+
+<script src="assets/interactive-hero.js"></script>
+</body>
+</html>
